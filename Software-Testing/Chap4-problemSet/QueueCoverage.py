@@ -72,8 +72,11 @@ def test():
     q.checkRep()
     # Check if queue is empty
     isempty = q.empty()
+    assert(isempty == True)
     # try do dequeue on empty queue
     nothing = q.dequeue()
+    assert(nothing == None)
+    
     # Make queue full
     for x in range(7):
         q.enqueue(x)
