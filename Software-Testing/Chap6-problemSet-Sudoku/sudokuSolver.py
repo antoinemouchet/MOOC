@@ -432,6 +432,7 @@ def fill(grid):
         # Reset value at position tested since it's invalid
         grid[lineID][elID] = 0
 
+    # Go back
     # It gets here when grid is invalid
     return False
 
