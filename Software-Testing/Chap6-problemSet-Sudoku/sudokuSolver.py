@@ -339,6 +339,7 @@ def findNextHole(grid):
         # Increase id of row
         rowID += 1
 
+    # No 0 found in grid
     return None
 
 def displayGrid(grid):
@@ -391,6 +392,37 @@ def displayGrid(grid):
 
     print(display)
 
+def getPossibleValues(grid, lineID, colID):
+    """
+    Returns a list of possible values for a case
+    Parameters
+    ----------
+    grid: the grid we try to solve (list)
+    lineID: index of the line of the case (int)
+    colID: index of the column of the case (int)
+
+    Returns
+    -------
+    possibleValues: possible values for a case (list)
+    """
+    # Define list of initial values
+    possibleValues = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    
+    # Loop on all possible values
+    for value in possibleValues:
+        # Try grid with this value
+        grid[lineID][colID] = value
+
+        # If grid invalid with this value
+        if not checkValidity(grid):
+            # Remove value from list of possible values
+            possibleValues.remove(value)
+
+    # Reset case as unknown
+    grid[lineID][colID] = 0
+
+    return possibleValues
+
 def fill(grid):
     """
     Returns a boolean depending on if grid is complete and valid or not
@@ -402,6 +434,7 @@ def fill(grid):
     -------
     True if grid is full and valid, False otherwise (bool)
     """
+    # Get next 0 in grid
     hole = findNextHole(grid)
 
     # Grid is complete and valid
@@ -413,8 +446,8 @@ def fill(grid):
     lineID = hole[0]
     elID = hole[1]
 
-    # Define list of possible values.
-    possibleValues = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    # Get list of possible values for case
+    possibleValues = getPossibleValues(grid, lineID, elID)
 
     # Loop on possible values
     for value in possibleValues:
@@ -468,5 +501,5 @@ def solve_sudoku (grid):
     # Impossible to solve grid
     return False
 
-#displayGrid(solve_sudoku(easy))
+displayGrid(solve_sudoku(easy))
 displayGrid(solve_sudoku(hard))

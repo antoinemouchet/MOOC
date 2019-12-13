@@ -134,7 +134,7 @@ def checkSanity(grid):
         # Loop on each element of list
         for element in lines:
             # Check if element is invalid
-            if 0 > element or 9 < element:
+            if 0 > element or 9 < element or type(element) is not int:
                 sanity = False
                 # Grid is ill-formed
                 return sanity
