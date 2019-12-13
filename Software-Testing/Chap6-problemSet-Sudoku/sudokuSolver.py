@@ -469,4 +469,4 @@ def solve_sudoku (grid):
     return False
 
 #displayGrid(solve_sudoku(easy))
-#displayGrid(solve_sudoku(hard))
+displayGrid(solve_sudoku(hard))
