@@ -69,28 +69,49 @@ def test():
     # Create a queue of size max = 5
     q = Queue(5)
 
+    # Sanity check of the queue
     q.checkRep()
+
     # Check if queue is empty
     isempty = q.empty()
     assert(isempty == True)
-    # try do dequeue on empty queue
+
+    # Try do dequeue on empty queue
     nothing = q.dequeue()
     assert(nothing == None)
     
     # Make queue full
     for x in range(7):
+        # Add element into the queue
         q.enqueue(x)
+        # Sanity check
         q.checkRep()
-    q.full()
+    
+    # Make sure Queue is full
+    assert(q.full() == True)
+
     # Try to empty queue
     i = 0
+    # Loop to remove everything from the queue
     while i < 8:
+        # remove element from the queue
         x = q.dequeue()
+
+        # If something was dequeued
+        if x != None:
+            assert(x == i)
+            
+        # Nothing was dequeued
+        else:
+            # Make sure nothing was dequeued and queue was empty
+            assert(x == None)
+            assert(q.empty())
+
+        # Sanity checking
         q.checkRep()
+
+        # Increase counter
         i += 1
     
 
-
-
 test()
-

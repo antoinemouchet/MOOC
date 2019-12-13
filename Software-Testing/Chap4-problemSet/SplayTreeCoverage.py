@@ -142,18 +142,22 @@ class SplayTree:
 # full statement coverage on the SplayTree class.
 def test():
 
-    #Create nodes
+    #Create different nodes
     t = Node(5)
     u = Node(6)
     
-    # Check if nodes are equals
+    # Check nodes are not equals
     egal = t.equals(u)
     assert(egal == False)
 
-    #Creation
+    # Creation
     s = SplayTree()
+
+    # Tree should be empty at this point
     empty = s.isEmpty()
     assert (empty == True)
+
+    # There is no min or max when tree is empty
     mini = s.findMin()
     assert(mini == None)
     maxi = s.findMax()
@@ -164,30 +168,34 @@ def test():
     isIn = s.find(42)
     assert(isIn == None)
 
-    #Insertions
+    # Insertions
+    # Insert elements that are both bigger and smaller
+    # Than the first one inserted
+    # Insert the same element twice as well
+
     s.insert(42)
-    # Insert same element 2 times
-    s.insert(42)
-    s.insert(58)
-    s.insert(36)
-    s.insert(24)
-    s.insert(48)
+    s.insert(42)    # Second time
+    s.insert(58)    # Bigger than first
+    s.insert(36)    # Smaller than first
+    s.insert(24)    # Smallest element
+    s.insert(48)    # Bigger than first but smaller than the biggest
     
-    # Look for smthg not in tree
+    # Look for something not in tree
     at = s.find(150)
     assert(at == None)
 
-    #Check min and max
+    # Check min and max
+    # They changed since we added element into the tree
     mini = s.findMin()
     assert(mini == 24)
     maxi = s.findMax()
     assert(maxi == 58)
 
-    #Look for a specific node
+    # Look for a specific node
     at = s.find(42)
     assert (at == 42)
 
-    #Deletion
+    # Delete values from tree
     s.remove(42)
     s.remove(58)
     s.remove(24)
