@@ -69,19 +69,19 @@ platformInfo = ("Fuzzing started on: %s\nApp tested: %s\nSeed used: %d\n\n\
 log.write(platformInfo)
 
 # Dict for sleeping times following file format
-sleepingTime = {'png': 4,
-                'jpg': 4,
-                'mp3': 7,
-                'mp4': 7}
+sleepingTime = {'png': 2,
+                'jpg': 2,
+                'mp3': 3.5,
+                'mp4': 3.5}
 
 # Define nb of tests to do
-nbTest = 100
+nbTest = 1000
 
 # Initialize nb of crash at 0
 nbCrash = 0
 
 # Initialize corruption factor
-corruptFactor = 500
+corruptFactor = 100
 
 for testID in range(nbTest):
 
