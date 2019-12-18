@@ -74,13 +74,16 @@ sleepingTime = {'png': 4,
                 'mp3': 7,
                 'mp4': 7}
 
+# Define nb of tests to do
+nbTest = 100
+
 # Initialize nb of crash at 0
 nbCrash = 0
 
 # Initialize corruption factor
 corruptFactor = 500
 
-for testID in range(10):
+for testID in range(nbTest):
 
     # Define list of types availables
     typeList = ['png', 'jpg', 'mp3', 'mp4']
