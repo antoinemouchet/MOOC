@@ -41,7 +41,7 @@ logFileName = ("log-%s.txt" % timeStringPath)
 # Generate log file path
 logFilePath = "/".join([logDir, logFileName])
 
-# Open log file in write mode or append ath the end if already exists
+# Open log file in write mode or append at the end if already exists
 log = open(logFilePath, 'a')
 
 # Get system info
@@ -68,6 +68,8 @@ platformInfo = ("Fuzzing started on: %s\nApp tested: %s\nSeed used: %d\n\n\
 
 # Write platform info into log file
 log.write(platformInfo)
+# Close log file
+log.close()
 
 # Dict for sleeping times following file format
 sleepingTime = {'png': 3,
@@ -91,6 +93,8 @@ typeList = ['png', 'jpg', 'mp3', 'mp4']
 basicFuzzedPath = "TestedFile"
 
 for testID in range(nbTest):
+    # Open log file and append at the end
+    log = open(logFilePath, 'a')
 
     # Choose a random type
     randType = random.choice(typeList)
@@ -207,6 +211,12 @@ for testID in range(nbTest):
 
     # Write log for the file
     log.write(logSentence)
+
+    # Close log file after each file
+    log.close()
+
+# Open log file in append mode
+log = open(logFilePath, 'a')
 
 # Write last sentence of file
 log.write("\nProgram ended on: %s. It found: %d bug.\n" % (time.asctime(), nbCrash))
