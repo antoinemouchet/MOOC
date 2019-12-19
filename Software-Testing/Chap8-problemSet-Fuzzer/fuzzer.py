@@ -1,10 +1,11 @@
-import math
 import random
 import subprocess
 import os
 import time
 import platform
 import ctypes
+
+# Code adapted from Charlie's Miller "Babysitting an army of monkeys"
 
 # Get time when program started
 actualTime = time.localtime()
@@ -28,7 +29,7 @@ appsPath = {"WMP": "C:/Program Files (x86)/Windows Media Player/wmplayer.exe",
             "MPCHC": "C:/Program Files/MPC-HC/mpc-hc64.exe"}
 
 # Define chosen app
-chosenApp = "MPCHC"
+chosenApp = "WMP"
 
 # Create directory for fuzzed files
 fuzzedFilesDir = "/".join([fuzzedDir, timeStringPath])
@@ -69,24 +70,27 @@ platformInfo = ("Fuzzing started on: %s\nApp tested: %s\nSeed used: %d\n\n\
 log.write(platformInfo)
 
 # Dict for sleeping times following file format
-sleepingTime = {'png': 2,
-                'jpg': 2,
-                'mp3': 3.5,
-                'mp4': 3.5}
+sleepingTime = {'png': 3,
+                'jpg': 3,
+                'mp3': 5,
+                'mp4': 5}
 
 # Define nb of tests to do
-nbTest = 1000
+nbTest = 15
 
 # Initialize nb of crash at 0
 nbCrash = 0
 
 # Initialize corruption factor
-corruptFactor = 100
+corruptFactor = 250
+
+# Define list of types availables
+typeList = ['png', 'jpg', 'mp3', 'mp4']
+
+# Define initial fuzzed file name
+basicFuzzedPath = "TestedFile"
 
 for testID in range(nbTest):
-
-    # Define list of types availables
-    typeList = ['png', 'jpg', 'mp3', 'mp4']
 
     # Choose a random type
     randType = random.choice(typeList)
@@ -106,13 +110,20 @@ for testID in range(nbTest):
     # Read file as binary
     fileAsBytes = bytearray(fileRead.read())
 
+    # Get size of array
+    fileSize = len(fileAsBytes)
+
+    # Get 10 percent of file size
+    tenPercentFile = (10 * fileSize) // 100
+
     # Close file
     fileRead.close()
 
     # CORRUPT FILE
     # Get random number of bytes to corrupt
     # Choose a random number which gets smaller as the denominator gets bigger.
-    NbCorrupt = random.randrange(math.ceil(len(fileAsBytes)/corruptFactor))
+    # Corrupt at least one
+    NbCorrupt = (random.randrange(fileSize//corruptFactor)) + 1
     
     # Loop until we corrupted chosen amount of bytes
     for byte in range(NbCorrupt):
@@ -120,15 +131,29 @@ for testID in range(nbTest):
         # Get a random byte
         rbyte = random.randrange(256)
 
-        # Get a random index for bytes
-        randIndex = random.randrange(len(fileAsBytes))
+        # ---- TEST EXTREME CASES ----
+        # Force random bytes on the start
+        if testID < (nbTest / 4):
+            # Get a random index for bytes
+            randIndex = random.randrange(0, tenPercentFile)
+        
+        # Force random bytes at the end
+        elif testID > (3 * nbTest / 4):
+           randIndex = random.randrange((fileSize - tenPercentFile), fileSize)
+
+        # Random bytes anywhere
+        else:
+            randIndex = random.randrange(fileSize)
+
+        # ---- END OF RANDOM GENERATING ----
 
         # Change byte by random byte at position wanted
         fileAsBytes[randIndex] = rbyte
 
     # STORE FUZZED FILE     
     # Generate path of fuzzed file
-    fuzzedFilePath  = "/".join([fuzzedFilesDir, fileName])
+    corruptedFileName = basicFuzzedPath + ("%d.%s" % (testID, fileName.split(".")[1]))
+    fuzzedFilePath  = "/".join([fuzzedFilesDir, corruptedFileName])
 
     # Open fuzzed file
     fuzzedFile = open(fuzzedFilePath, 'wb')
@@ -140,9 +165,15 @@ for testID in range(nbTest):
     fuzzedFile.close()
 
     # Add more info into logging file
-    logSentence = ("Test number: %d\tType chosen: %s\tFile changed: %s\tNb of bytes changed: %d" %\
-     # Test id, type chose, file chosen, amount of bytes corrupted.
-     (testID, randType, fileName, NbCorrupt))
+    logSentence = ("Test number: %d\tType chosen: %s\tFile changed: %s\t" %\
+     # Test id, type chose, file chosen
+     (testID, randType, fileName))
+
+    # Clarity in log files
+    if len(fileName) <= 17:
+        logSentence += "\t"
+    # Add number of bytes corrupted
+    logSentence += "Nb of bytes changed: %d" % NbCorrupt
 
     # TESTING APP WITH FUZZED FILE
     # Launch app with file specified
