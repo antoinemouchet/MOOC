@@ -40,7 +40,7 @@ nbTest = 500
 typeList = ['png', 'jpg', 'mp3', 'mp4', 'wav']
 
 # Initialize corruption factor
-corruptFactor = 250
+corruptFactor = 100
 
 # Dict with path of each program that can be tested
 appsPath = {"WMP": "C:/Program Files (x86)/Windows Media Player/wmplayer.exe",
@@ -151,14 +151,18 @@ for testID in range(nbTest):
         rbyte = random.randrange(256)
 
         # ---- TEST EXTREME CASES ----
-        # Force random bytes on the start
-        if testID < (nbTest / 4):
+        # Force random bytes on the start for 25% of test
+        if testID < (25 * nbTest / 100):
             # Get a random index for bytes
             randIndex = random.randrange(0, tenPercentFile)
         
-        # Force random bytes at the end
-        elif testID > (nbTest / 20):
+        # Force random bytes at the end for 10% of test
+        elif testID > (90 * nbTest / 100):
            randIndex = random.randrange((fileSize - tenPercentFile), fileSize)
+        
+        # Force random bytes in the middle for 15% of test
+        elif (testID > (25 * nbTest / 100) and testID < (40 * nbTest / 100)):
+            randIndex = random.randrange(((fileSize//2)- tenPercentFile), ((fileSize//2) + tenPercentFile))
 
         # Random bytes anywhere
         else:
