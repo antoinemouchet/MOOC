@@ -89,7 +89,6 @@ class Queue:
         if self.head == self.tail:
             assert (self.size==0) or (self.size==self.max)
 
-
 # Provide full statement and parameter value coverage of the Queue class
 def test():
     # Define a dico {type : list of values of type}
@@ -121,7 +120,6 @@ def test():
     value = q.dequeue()
     assert value == None
     # -- End of invalid testing --
-
 
     # Loop on all the valid types
     for enqueueType in values.keys():
@@ -155,7 +153,6 @@ def test():
             if values[enqueueType].index(item) >= 5:
                 assert q.full()
                 assert not success
-
 
         # Loop to dequeue item until queue is empty
         while not q.empty():
