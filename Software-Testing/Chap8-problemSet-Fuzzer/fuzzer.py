@@ -35,7 +35,7 @@ os.mkdir(fuzzedFilesDir)
 chosenApp = "WMP"
 
 # Define nb of tests to do
-nbTest = 500
+nbTest = 1000
 # Define list of types availables
 typeList = ['png', 'jpg', 'mp3', 'mp4', 'wav']
 
