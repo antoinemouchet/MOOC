@@ -170,5 +170,6 @@ def test():
     
     # Get data of queue
     data = q.__str__()
+    #print(data)
 
 test()
