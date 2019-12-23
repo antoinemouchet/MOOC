@@ -1,4 +1,6 @@
 .vscode
 htmlcov
 .coverage
-fuzzer
+fuzzed
+logs
+

@@ -6,6 +6,10 @@ import platform
 
 # Code adapted from Charlie's Miller "Babysitting an army of monkeys"
 
+# All images and mp4 are from pixabay (https://pixabay.com/)
+# All wav files are music from Vexento (youtube: https://www.youtube.com/user/Vexento/)
+# All mp3 files are music from League of Legends volume 1 which was avalaibable for free.
+
 # -- SET UP --
 
 # Get time when program started
