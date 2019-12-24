@@ -7,8 +7,7 @@ import platform
 # Code adapted from Charlie's Miller "Babysitting an army of monkeys"
 
 # All images and mp4 are from pixabay (https://pixabay.com/)
-# All wav files are music from Vexento (youtube: https://www.youtube.com/user/Vexento/)
-# All mp3 files are music from League of Legends volume 1 which was avalaibable for free.
+# All wav and mp3 files are music from Vexento (youtube: https://www.youtube.com/user/Vexento/)
 
 # -- SET UP --
 
@@ -25,9 +24,9 @@ random.seed(seed)
 
 # -- DIRECTORY SETUP --
 actualDir = os.getcwd()
-initialDir = "%s\\Software-Testing\\Chap8-problemSet-Fuzzer\\Fuzzer\\Initial" % actualDir
-fuzzedDir = "%s\\Software-Testing\\Chap8-problemSet-Fuzzer\\Fuzzer\\Fuzzed" % actualDir
-logDir = "%s\\Software-Testing\\Chap8-problemSet-Fuzzer\\Fuzzer\\Logs" % actualDir
+initialDir = "%s\\Chap8-problemSet-Fuzzer\\Fuzzer\\Initial" % actualDir
+fuzzedDir = "%s\\Chap8-problemSet-Fuzzer\\Fuzzer\\Fuzzed" % actualDir
+logDir = "%s\\Chap8-problemSet-Fuzzer\\Fuzzer\\Logs" % actualDir
 
 # Create directory for fuzzed files
 fuzzedFilesDir = "\\".join([fuzzedDir, timeStringPath])
@@ -39,7 +38,7 @@ os.mkdir(fuzzedFilesDir)
 chosenApp = "WMP"
 
 # Define nb of tests to do
-nbTest = 1000
+nbTest = 50
 # Define list of types availables
 typeList = ['png', 'jpg', 'mp3', 'mp4', 'wav']
 
