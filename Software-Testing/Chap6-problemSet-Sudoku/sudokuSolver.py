@@ -267,8 +267,6 @@ def checkValidity(grid):
     Returns a boolean depending on the validity of the grid
     Parameters
     ----------
-    Parameters
-    ----------
     grid: the grid of which we check validity (list)
 
     Returns
