@@ -106,7 +106,7 @@ def random_test():
     # Create Queue
     q = Queue(200)
 
-    for test in range(25):
+    for test in range(20000):
         # Get random integer
         randNum = random.randint(0, 1000000)
 
