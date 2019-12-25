@@ -4,8 +4,6 @@ import os
 import time
 import platform
 
-# Code adapted from Charlie's Miller "Babysitting an army of monkeys"
-
 # All images and mp4 are from pixabay (https://pixabay.com/)
 # All wav and mp3 files are music from Vexento (youtube: https://www.youtube.com/user/Vexento/)
 
@@ -109,7 +107,9 @@ log.write(platformInfo)
 log.close()
 # -- END OF SETUP --
 
-# -- START TESTING -- 
+# -- START TESTING --
+# Code adapted from Charlie's Miller "Babysitting an army of monkeys"
+
 for testID in range(nbTest):
     # Open log file and append at the end
     log = open(logFilePath, 'a')
