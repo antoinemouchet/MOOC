@@ -18,6 +18,7 @@ timeStringPath = ("%d-%d-%d-%dh%dmin%dsec" % (actualTime[2], actualTime[1], actu
 
 # Get a random number and use it as seed
 seed = random.randint(1, 100000000000)
+# Change seed here to remake another test
 random.seed(seed)
 
 # -- DIRECTORY SETUP --
