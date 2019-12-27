@@ -32,7 +32,7 @@ fuzzedFilesDir = "\\".join([fuzzedDir, timeStringPath])
 os.mkdir(fuzzedFilesDir)
 # ---------------------
 
-# -- DEFINE TEST VALUES--
+# -- DEFINE TEST VALUES --
 # Define chosen app
 chosenApp = "WMP"
 
@@ -48,7 +48,7 @@ corruptFactor = 100
 appsPath = {"WMP": "C:/Program Files (x86)/Windows Media Player/wmplayer.exe",
             "VLC": "D:/VLC/vlc.exe",
             "MPCHC": "C:/Program Files/MPC-HC/mpc-hc64.exe"}
-# -----------------------
+# ------------------------
 
 # -- PERMANENT VALUES --
 # Initialize nb of crash at 0
