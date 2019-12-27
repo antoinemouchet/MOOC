@@ -38,8 +38,6 @@ chosenApp = "WMP"
 
 # Define nb of tests to do
 nbTest = 50
-# Define list of types availables
-typeList = ['png', 'jpg', 'mp3', 'mp4', 'wav']
 
 # Initialize corruption factor
 corruptFactor = 100
@@ -59,6 +57,9 @@ basicFuzzedPath = "TestedFile"
 
 # Size of fuzzed files directory
 fuzzedDirSize = 0
+
+# Define list of types availables
+typeList = ['png', 'jpg', 'mp3', 'mp4', 'wav']
 
 # Dict for sleeping times following file format
 sleepingTime = {'png': 2,
