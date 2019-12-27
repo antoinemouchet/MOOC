@@ -172,7 +172,6 @@ for testID in range(nbTest):
         # Random bytes anywhere
         else:
             randIndex = random.randrange(fileSize)
-
         # ---- END OF RANDOM GENERATING ----
 
         # Change byte by random byte at position wanted
@@ -217,7 +216,7 @@ for testID in range(nbTest):
     status = appli.poll()
     # No crash
     if status == None:
-        # Kill app and go to next line in log
+        # Kill app
         appli.terminate()
 
     # Crashed
