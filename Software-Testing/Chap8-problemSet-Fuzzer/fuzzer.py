@@ -18,6 +18,7 @@ timeStringPath = ("%d-%d-%d-%dh%dmin%dsec" % (actualTime[2], actualTime[1], actu
 
 # Get a random number and use it as seed
 seed = random.randint(1, 100000000000)
+# Change seed here to remake another test
 random.seed(seed)
 
 # -- DIRECTORY SETUP --
@@ -31,14 +32,12 @@ fuzzedFilesDir = "\\".join([fuzzedDir, timeStringPath])
 os.mkdir(fuzzedFilesDir)
 # ---------------------
 
-# -- DEFINE TEST VALUES--
+# -- DEFINE TEST VALUES --
 # Define chosen app
 chosenApp = "WMP"
 
 # Define nb of tests to do
 nbTest = 50
-# Define list of types availables
-typeList = ['png', 'jpg', 'mp3', 'mp4', 'wav']
 
 # Initialize corruption factor
 corruptFactor = 100
@@ -47,7 +46,7 @@ corruptFactor = 100
 appsPath = {"WMP": "C:/Program Files (x86)/Windows Media Player/wmplayer.exe",
             "VLC": "D:/VLC/vlc.exe",
             "MPCHC": "C:/Program Files/MPC-HC/mpc-hc64.exe"}
-# -----------------------
+# ------------------------
 
 # -- PERMANENT VALUES --
 # Initialize nb of crash at 0
@@ -58,6 +57,9 @@ basicFuzzedPath = "TestedFile"
 
 # Size of fuzzed files directory
 fuzzedDirSize = 0
+
+# Define list of types availables
+typeList = ['png', 'jpg', 'mp3', 'mp4', 'wav']
 
 # Dict for sleeping times following file format
 sleepingTime = {'png': 2,
@@ -170,7 +172,6 @@ for testID in range(nbTest):
         # Random bytes anywhere
         else:
             randIndex = random.randrange(fileSize)
-
         # ---- END OF RANDOM GENERATING ----
 
         # Change byte by random byte at position wanted
@@ -215,7 +216,7 @@ for testID in range(nbTest):
     status = appli.poll()
     # No crash
     if status == None:
-        # Kill app and go to next line in log
+        # Kill app
         appli.terminate()
 
     # Crashed
