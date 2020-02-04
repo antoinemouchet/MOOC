@@ -3,4 +3,3 @@ htmlcov
 .coverage
 fuzzed
 logs
-datasets
