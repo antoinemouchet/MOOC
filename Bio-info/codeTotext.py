@@ -1,7 +1,8 @@
 import Getting_fre as g
+import text as t
 
 # Get text
-text = g.get_text('./enigme/Rawtext.txt')
+text = t.get_text('./dataSets/enigme/Rawtext.txt')
 
 # Get a copy of the text
 text_copy = text

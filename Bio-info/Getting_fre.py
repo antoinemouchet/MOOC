@@ -227,7 +227,6 @@ def freq_substring(text, length):
 
     return freq_sub
 
-
 def pattern_to_number(pattern):
     """
     Return a number based on the pattern inserted

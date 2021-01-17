@@ -80,6 +80,16 @@ hard = [[1,0,0,0,0,7,0,9,0],
         [0,4,0,0,0,0,0,0,7],
         [0,0,7,0,0,0,3,0,0]]
 
+dad= [[0,3,0,4,0,0,1,0,0],
+      [0,0,0,0,1,8,0,0,0],
+      [6,0,0,0,0,3,0,0,0],
+      [0,0,0,0,0,9,0,0,0],
+      [0,8,0,5,3,0,0,7,2],
+      [0,0,0,0,0,0,0,4,0],
+      [0,0,3,9,0,0,4,0,0],
+      [0,2,4,0,0,0,0,6,0],
+      [0,0,5,0,7,0,9,0,0]]
+
 def checkSanity(grid):
     """
     Returns a boolean depending on the sanity of the grid.
@@ -460,7 +470,7 @@ def fill(grid):
         # Recursivity
         # If grid is valid, launch fill again
         if checkValidity(grid):
-            #displayGrid(grid)
+            displayGrid(grid)
             # This should happen only when grid is full
             if fill(grid):
                 return True
@@ -504,5 +514,5 @@ def solve_sudoku (grid):
     # Impossible to solve grid
     return False
 
-displayGrid(solve_sudoku(easy))
-displayGrid(solve_sudoku(hard))
+#displayGrid(solve_sudoku(easy))
+displayGrid(solve_sudoku(dad))
